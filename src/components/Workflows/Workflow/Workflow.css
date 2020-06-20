@@ -14,6 +14,11 @@
     box-sizing: border-box;
 }   
 
+.wflow-container:hover {
+    background: linear-gradient(#ffffff 0%, #f1f1f1 10%);
+    cursor: pointer;
+} 
+
 .wflow-container ul { 
     text-decoration: none;
     margin: 0;
@@ -23,5 +28,5 @@
 .wflow-container li { 
     display: block;
     margin: 20px 0;
-    
+
 }

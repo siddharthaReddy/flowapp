@@ -7,3 +7,11 @@
   justify-content: center;
   color: white;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.float-right {
+  float: right;
+}

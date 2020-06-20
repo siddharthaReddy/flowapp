@@ -1,5 +1,6 @@
 import React from 'react';
 import './Workflow.css';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 class Workflow extends React.Component {
     // Three variables: 
@@ -14,7 +15,8 @@ class Workflow extends React.Component {
                 this.props.nodes.map( task => {
                     return (
                         <li key={task.id}>
-                            <p>{task.title}</p>
+                            <span>{task.title}</span>
+                            <CheckCircleIcon className="float-right" />
                         </li>
                     )
                 })
