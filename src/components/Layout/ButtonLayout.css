@@ -1,0 +1,46 @@
+.button-layout {
+  min-height: 75px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #eeeeee;
+  box-shadow: 1px 1px #cccccc;
+}
+
+.button-layout .block { 
+  flex: 1;
+}
+
+.button-layout .subitem {
+  display: inline-block;
+  margin-right: 10px;
+  height: 25px;
+}
+
+.button-layout .block.second .subitem {
+  float: right;
+}
+
+.button-layout input {
+  width: 200px;
+  height: 20px !important;
+}
+
+.button-layout select {
+  background-color: #eeeeee;
+  border-radius: 4px;
+}
+
+.button-layout select:hover {
+  background-color: #dedada;
+  cursor: pointer;
+}
+
+.button-layout button {
+  min-width: 50px;
+  padding: 0 20px;
+}
+.button-layout button:hover {
+  cursor: pointer;
+}
