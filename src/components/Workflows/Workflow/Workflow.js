@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from "react";
 import './Workflow.css';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-class Workflow extends React.Component {
+class Workflow extends Component {
     // Three variables: 
     // Name: string
     // Status - completed/pending
@@ -26,8 +26,8 @@ class Workflow extends React.Component {
         return (
             <div className='wflow-container box-layout'>
                 <div>
-                    <div className='input-field box-layout'>
-                        <span>{this.props.name}</span>
+                    <div className='title'>
+                        <input readOnly value={this.props.name} />
                     </div>
                     <div className='nodes-list'>
                         <ul>

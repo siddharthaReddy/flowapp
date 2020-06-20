@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import ButtonLayout from '../../components/Layout/ButtonLayout';
 import Workflows from '../../components/Workflows/Workflows';
 import { Link } from 'react-router-dom';
 
-class WorkflowsContainer extends React.Component {
+class WorkflowsContainer extends Component {
 
     constructor () {
         super();
@@ -57,7 +57,7 @@ class WorkflowsContainer extends React.Component {
         let filteredWorkflows = list.filter(wflow => {
             let match = false;
             if (wflow.name) {
-                match = wflow.name.toLowerCase().indexOf(text) !== -1;
+                match = wflow.name.toLowerCase().indexOf(text.toLowerCase()) !== -1;
             }
             return match;
         });
