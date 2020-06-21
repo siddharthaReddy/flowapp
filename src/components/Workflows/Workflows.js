@@ -10,7 +10,7 @@ class Workflows extends Component {
             workflows = (this.props.workflows.map((wflow) => {
                     return <Workflow key={wflow.id}
                         name={wflow.name}
-                        isCompleted={wflow.isCompleted}
+                        completed={wflow.completed}
                         nodes={wflow.nodes}
                         deleteHandler={(event) => this.props.deleteWorkflowHandler(event, wflow.id) }/> 
                     })

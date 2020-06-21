@@ -7,6 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from '@material-ui/icons/Clear';
 
 import HeaderLayout from '../components/Layout/Header';
+import { SuccessButton, DangerButton, PurpleButton } from '../components/Layout/CustomButtons';
 import Nodes from "../components/Nodes/Nodes";
 import { updateWorkflow } from "../services/Mockdata/WorkflowService";
 
@@ -16,6 +17,7 @@ class CreateWorkflow extends Component {
         super();
         this.state = { 
             name: '',
+            completed: false, // true when all nodes are completed
             nodes: []
         }
     }
@@ -57,20 +59,28 @@ class CreateWorkflow extends Component {
             id: Math.floor(Math.random() * 1000), 
             title: '',
             content: '',
-            status: null
+            status: 'pending'
         })
 
-        // update state
         this.setState({
+            completed: false, // new pending node added
             nodes: nodes
-        })
+        });
     }
 
     updateNodesHandler(nodes) {
-        console.log("update nodes handler clicked!");
+        let isWorkflowCompleted = true;
+
+        for (var i=0; i < nodes.length; i++){
+            if (nodes[i].status !== "completed") {
+                isWorkflowCompleted = false;
+                break;
+            }
+        }
         this.setState({
+            completed: isWorkflowCompleted,
             nodes: nodes
-        })
+        });
     }
 
     saveWorkflowClickHandler = () => {
@@ -78,6 +88,7 @@ class CreateWorkflow extends Component {
             id: Math.floor(Math.random() * 1000),
             name: this.state.name,
             nodes: this.state.nodes,
+            completed: this.state.completed
         }
 
         // Update nodes to database
@@ -100,28 +111,29 @@ class CreateWorkflow extends Component {
                             onChange={this.nameChangeHandler} />
                     </div>
                     <div className="block second">
-                        <Button
+                        {this.state.completed &&
+                        <PurpleButton
                             variant="contained"
                             color="primary"
                             className="md-button"
                             startIcon={<ShuffleIcon />}
                             size="small"
-                            onClick={this.shuffleWorkflowsHandler}>Shuffle</Button>
-                        <Button
+                            onClick={this.shuffleWorkflowsHandler}>Shuffle</PurpleButton>    
+                        }              
+                        <DangerButton
                             variant="contained"
                             color="primary"
                             className="md-button"
                             startIcon={<ClearIcon />}
                             size="small"
-                            onClick={this.deleteWorkflowClickHandler}>Delete</Button>
-                        <Button
+                            onClick={this.deleteWorkflowClickHandler}>Delete</DangerButton>
+                        <SuccessButton
                             variant="contained"
                             color="primary"
                             className="md-button"
                             startIcon={<AddIcon />}
                             size="small"
-                            onClick={this.addNodeClickHandler}>Add Node</Button>
-                        
+                            onClick={this.addNodeClickHandler}>Add Node</SuccessButton>
                         <Button
                             variant="contained"
                             color="primary"

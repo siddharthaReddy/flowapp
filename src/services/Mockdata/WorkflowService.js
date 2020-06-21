@@ -28,7 +28,7 @@ let workflows = [
     {
         id: '1',
         name: 'Workflow 1',
-        isCompleted: true,
+        completed: true,
         nodes: [
             {id: '1-node1', title: 'Task 1', status: 'completed', content: 'This task is completed'},
             {id: '1-node2', title: 'Task 2', status: 'in-progress', content: 'This task is inprogress'},
@@ -38,7 +38,7 @@ let workflows = [
     {
         id: '2',
         name: 'Workflow 2',
-        isCompleted: false,
+        completed: false,
         nodes: [
             {id: '2-node1', title: 'Task 1', status:'pending', content: 'Tasks are pending'},
             {id: '1-node2', title: 'Task 2', status: 'in-progress', content: 'This task is inprogress'}
@@ -47,7 +47,7 @@ let workflows = [
     {
         id: '3',
         name: 'Workflow 3',
-        isCompleted: false,
+        completed: false,
         nodes: [
             {id: '3-node1', title: 'Task 1', status:'pending', content: 'Tasks are pending'}
         ]

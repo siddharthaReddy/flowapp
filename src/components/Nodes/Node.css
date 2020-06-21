@@ -14,3 +14,15 @@
     min-height: 250px;
     font-family: inherit;
 }
+
+.md-icon.success {
+    color: #4caf50;
+}
+
+.md-icon.primary {
+    color: #3f51b5;
+}
+
+.md-icon.default {
+    color: #9e9e9e;
+}

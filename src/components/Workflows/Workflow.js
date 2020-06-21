@@ -3,41 +3,38 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 class Workflow extends Component {
-    // Attributes: 
+    // Attributes -  
     // Name: string
-    // Status - completed/pending
-    // Nodes[]
+    // Completed: boolean
+    // Nodes: Node[]
 
     render () {
-        let nodes = null;
-        if (this.props.nodes) {
-            nodes = (
-                this.props.nodes.map( task => {
-                    return (
-                        <li key={task.id}>
-                            <span>{task.title}</span>
-                            <CheckCircleIcon className="float-right" />
-                        </li>
-                    )
-                })
-            )
+        let iconClass = "default";
+        let status = "Pending";
+
+        if (this.props.completed) {
+            iconClass = "success";
+            status = "Completed";
         }
 
         return (
             <div className='wflow-container box-layout'>
+                <div className='md-icon right-corner delete'>
+                    <DeleteForeverIcon 
+                        onClick={this.props.deleteHandler} 
+                        fontSize="large"/>
+                </div>
                 <div>
-                    <div className='delete-icon'>
-                        <DeleteForeverIcon onClick={this.props.deleteHandler} fontSize="large"/>
+                    <div className='title box-layout text-transform-uppercase'>
+                        {this.props.name} 
                     </div>
-                    <div>
-                        <div className='title'>
-                            <input readOnly value={this.props.name} />
-                        </div>
-                        <div className='nodes-list'>
-                            <ul>
-                                {nodes}
-                            </ul>
-                        </div>
+                    <div className='nodes-list text-transform-uppercase'>
+                        <ul>
+                            <li>
+                                <span>{status}</span>
+                                <CheckCircleIcon className={`float-right md-icon ${iconClass}`} />
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

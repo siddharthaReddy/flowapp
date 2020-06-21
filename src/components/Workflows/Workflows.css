@@ -17,16 +17,12 @@
     padding: 20px;
     margin: 20px;
     min-width: 180px;
-    min-height: 300px;
+    min-height: 150px;
 }   
 
 .wflow-container:hover {
     background: linear-gradient(#ffffff 0%, #f1f1f1 10%);
     cursor: pointer;
-} 
-
-.wflow-container:hover .delete-icon {
-    display: inline-block;
 } 
 
 .wflow-container ul { 
@@ -41,10 +37,16 @@
 
 }
 
-.wflow-container .delete-icon { 
+.wflow-container .md-icon.right-corner {
     position: absolute;
-    color: red;
     transform: translate(180px, -35px);
+}
+
+.wflow-container .md-icon.delete { 
+    color:#f44336;
     display: none;
 }
 
+.wflow-container:hover .md-icon.delete {
+    display: inline-block;
+}

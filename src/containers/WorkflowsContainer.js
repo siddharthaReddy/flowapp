@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
 
-import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-
 import HeaderLayout from '../components/Layout/Header';
+import { SuccessButton } from '../components/Layout/CustomButtons';
 import Workflows from '../components/Workflows/Workflows';
 import { getWorkflows, deleteWorkflow } from "../services/Mockdata/WorkflowService";
 
@@ -56,10 +55,10 @@ class WorkflowsContainer extends Component {
             let match = true; // returns all workflows if selected=="all"
 
             if (selected === "completed") {
-                return wflow.isCompleted
+                return wflow.completed
             }
             else if (selected === "pending") {
-                return !wflow.isCompleted
+                return !wflow.completed
             }
 
             return match;
@@ -101,14 +100,14 @@ class WorkflowsContainer extends Component {
                     </div>
 
                     <div className="block second">
-                        <Button
+                        <SuccessButton
                             variant="contained"
                             color="primary"
                             className="md-button"
                             startIcon={<AddIcon />}
                             size="small">
                             <Link to="/edit">Create Workflow</Link>
-                        </Button>
+                        </SuccessButton>
                     </div>
                 </HeaderLayout>
 
