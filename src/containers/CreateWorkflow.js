@@ -6,9 +6,9 @@ import ShuffleIcon from '@material-ui/icons/Shuffle';
 import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from '@material-ui/icons/Clear';
 
-import ButtonLayout from '../../components/Layout/ButtonLayout';
-import Nodes from "../../components/Nodes/Nodes";
-import { updateWorkflow } from "../../services/Mockdata/WorkflowService";
+import HeaderLayout from '../components/Layout/Header';
+import Nodes from "../components/Nodes/Nodes";
+import { updateWorkflow } from "../services/Mockdata/WorkflowService";
 
 
 class CreateWorkflow extends Component {
@@ -92,7 +92,7 @@ class CreateWorkflow extends Component {
     render () {
         return (
             <div>
-                <ButtonLayout>
+                <HeaderLayout>
                     <div className="block first">
                         <input className="subitem" type="text" 
                             placeholder="Workflow Name"
@@ -130,7 +130,7 @@ class CreateWorkflow extends Component {
                             onClick={this.saveWorkflowClickHandler}>Save</Button>
                         
                     </div>
-                </ButtonLayout>
+                </HeaderLayout>
 
                 <Nodes nodes={this.state.nodes} changed={(nodes) => this.updateNodesHandler(nodes)} />
             </div>

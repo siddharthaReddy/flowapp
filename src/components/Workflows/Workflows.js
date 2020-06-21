@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Workflows.css';
-import Workflow from './Workflow/Workflow';
+import Workflow from './Workflow';
 
 class Workflows extends Component {    
 

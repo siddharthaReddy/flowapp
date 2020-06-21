@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './Workflow.css';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 

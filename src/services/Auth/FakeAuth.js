@@ -22,4 +22,4 @@ export const AuthButton = withRouter(({ history }) => (
           }}>Sign out</button>
         </p>
       : null
-  ))
+));

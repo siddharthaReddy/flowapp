@@ -1,8 +1,8 @@
 import React from 'react';
-import './ButtonLayout.css';
+import './Header.css';
 
-const ButtonLayout = (props) => {
+const HeaderLayout = (props) => {
     return <div className="button-layout">{props.children}</div>
 }
 
-export default ButtonLayout;
+export default HeaderLayout;

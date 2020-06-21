@@ -4,9 +4,9 @@ import { Link, withRouter } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 
-import ButtonLayout from '../../components/Layout/ButtonLayout';
-import Workflows from '../../components/Workflows/Workflows';
-import { getWorkflows, deleteWorkflow } from "../../services/Mockdata/WorkflowService";
+import HeaderLayout from '../components/Layout/Header';
+import Workflows from '../components/Workflows/Workflows';
+import { getWorkflows, deleteWorkflow } from "../services/Mockdata/WorkflowService";
 
 class WorkflowsContainer extends Component {
 
@@ -84,7 +84,7 @@ class WorkflowsContainer extends Component {
     render () {
         return (
             <div>
-                <ButtonLayout>
+                <HeaderLayout>
                     <div className="block first">
                         <input className="subitem" type="text" 
                             placeholder="Search Workflows"
@@ -110,7 +110,7 @@ class WorkflowsContainer extends Component {
                             <Link to="/edit">Create Workflow</Link>
                         </Button>
                     </div>
-                </ButtonLayout>
+                </HeaderLayout>
 
                 <Workflows workflows={this.state.workflows} deleteWorkflowHandler={this.deleteWorkflowClickHandler} />
             </div>

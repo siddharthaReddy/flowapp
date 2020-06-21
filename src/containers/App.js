@@ -9,8 +9,8 @@ import {
 import { AuthButton } from '../services/Auth/FakeAuth';
 import PrivateRoute from '../services/Auth/PrivateRoute';
 import LoginPage from './LoginPage';
-import WorkflowsContainer from './WorkflowsContainer/WorkflowsContainer';
-import CreateWorkflow from './CreateWorkflow/CreateWorkflow';
+import WorkflowsContainer from './WorkflowsContainer';
+import CreateWorkflow from './CreateWorkflow';
 
 class App extends Component {
 
