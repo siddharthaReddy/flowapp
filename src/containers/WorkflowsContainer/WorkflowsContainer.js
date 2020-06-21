@@ -40,17 +40,12 @@ class WorkflowsContainer extends Component {
         ]
 
         this.state = {
-            workflows: this.workflowsList
+            workflows: this.workflowsList,
+            filterDropdownValue: ''
         }
     }
 
-    createWorkflowClickHandler() {
-        console.log("Button Clicked!");
-        // Load CreateWorkflow component
-    }
-
     searchInputChangeHandler(event) {
-        // console.log(event.target.value);
         let text = event.target.value;
         let list = [...this.workflowsList]; // clone instead of passing reference
 
@@ -66,8 +61,33 @@ class WorkflowsContainer extends Component {
             workflows: filteredWorkflows
         })
     }
+
+    filterDropdownChangeHandler = (event) => {
+        let selected = event.target.value;
+        let list = [...this.workflowsList];
+
+        let filteredWorkflows = list.filter(wflow => {
+            let match = true; // returns all workflows if selected=="all"
+
+            if (selected === "completed") {
+                return wflow.isCompleted
+            }
+            else if (selected === "pending") {
+                return !wflow.isCompleted
+            }
+
+            return match;
+        });
+
+        this.setState({
+            workflows: filteredWorkflows,
+            filterDropdownValue: event.target.value
+        })
+    }
     
     render () {
+        // const { match, location, history } = this.props;
+        // console.log(match);
         return (
             <div>
                 <ButtonLayout>
@@ -75,22 +95,26 @@ class WorkflowsContainer extends Component {
                         <input className="subitem" type="text" 
                             placeholder="Search Workflows"
                             onChange={this.searchInputChangeHandler.bind(this)} />
-                        <select className="subitem">
-                            <option selected value="all">All</option>
-                            <option value="completed">Completed</option>
-                            <option value="pending">Pending</option>
+
+                        <select className="subitem" 
+                            value={this.state.filterDropdownValue} 
+                            onChange={this.filterDropdownChangeHandler}>
+                                <option value="" disabled hidden>-- Filter --</option>
+                                <option value="all">All</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
                         </select>
                     </div>
+
                     <div className="block second">
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className="md-button"
-                        startIcon={<AddIcon />}
-                        size="small"
-                        onClick={this.createWorkflowClickHandler}>
-                        <Link to="/edit">Create Workflow</Link>
-                    </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className="md-button"
+                            startIcon={<AddIcon />}
+                            size="small">
+                            <Link to="/edit">Create Workflow</Link>
+                        </Button>
                     </div>
                 </ButtonLayout>
 

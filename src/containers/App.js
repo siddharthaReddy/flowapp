@@ -10,7 +10,7 @@ import WorkflowsContainer from './WorkflowsContainer/WorkflowsContainer';
 import CreateWorkflow from './CreateWorkflow/CreateWorkflow';
 
 class App extends Component {
-  
+
   render () {
     return (
       <Router>
@@ -18,14 +18,11 @@ class App extends Component {
           <header className="App-header">
             <h2><Link to="/">FLOWAPP</Link></h2>
           </header>
+
           {/* Route pages */}
           <Switch>
-            <Route path="/" exact>
-              <WorkflowsContainer />
-            </Route>
-            <Route path="/edit">
-              <CreateWorkflow />
-            </Route>
+            <Route path="/" exact component={WorkflowsContainer} />
+            <Route path="/edit" component={CreateWorkflow} />
           </Switch>
         </div>
       </Router>
