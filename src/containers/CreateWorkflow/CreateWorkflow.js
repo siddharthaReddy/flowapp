@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import { withRouter } from 'react-router-dom';
+
+import { Button } from "@material-ui/core";
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from '@material-ui/icons/Clear';
+
 import ButtonLayout from '../../components/Layout/ButtonLayout';
 import Nodes from "../../components/Nodes/Nodes";
-import { updateWorkflow } from "../../services/workflows/WorkflowService";
+import { updateWorkflow } from "../../services/Mockdata/WorkflowService";
 
 
 class CreateWorkflow extends Component {
@@ -82,7 +85,7 @@ class CreateWorkflow extends Component {
 
         //redirect to home page
         if (this.props.history){
-            this.props.history.push("./");
+            this.props.history.push("/flowapp");
         }
     }
 
@@ -135,4 +138,4 @@ class CreateWorkflow extends Component {
     }
 }
 
-export default CreateWorkflow;
+export default withRouter(CreateWorkflow);

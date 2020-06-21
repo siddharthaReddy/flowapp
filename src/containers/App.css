@@ -3,10 +3,19 @@
   min-height: 50px;
   padding: 0 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   color: white;
 }
+
+.App-header .block { 
+  flex: 1;
+}
+
+.App-header .block:nth-child(2) { 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -14,4 +23,19 @@ a {
 
 .float-right {
   float: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.login-container div {
+  margin-bottom: 10px;
+  width: 100%;
 }

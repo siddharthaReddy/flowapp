@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link, withRouter } from 'react-router-dom';
+
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
+
 import ButtonLayout from '../../components/Layout/ButtonLayout';
 import Workflows from '../../components/Workflows/Workflows';
-import { Link } from 'react-router-dom';
-import { getWorkflows, deleteWorkflow } from "../../services/workflows/WorkflowService";
+import { getWorkflows, deleteWorkflow } from "../../services/Mockdata/WorkflowService";
 
 class WorkflowsContainer extends Component {
 
@@ -80,8 +82,6 @@ class WorkflowsContainer extends Component {
     }
     
     render () {
-        // const { match, location, history } = this.props;
-        // console.log(match);
         return (
             <div>
                 <ButtonLayout>
@@ -118,4 +118,4 @@ class WorkflowsContainer extends Component {
     }
 }
 
-export default WorkflowsContainer;
+export default withRouter(WorkflowsContainer);
