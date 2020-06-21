@@ -9,16 +9,37 @@ import ClearIcon from '@material-ui/icons/Clear';
 import HeaderLayout from '../components/Layout/Header';
 import { SuccessButton, DangerButton, PurpleButton } from '../components/Layout/CustomButtons';
 import Nodes from "../components/Nodes/Nodes";
-import { updateWorkflow } from "../services/Mockdata/WorkflowService";
+import { getWorkflowByID, updateWorkflow } from "../services/Mockdata/WorkflowService";
 
 
 class CreateWorkflow extends Component {
     constructor () {
         super();
-        this.state = { 
+        this.state = {
+            id: '', 
             name: '',
             completed: false, // true when all nodes are completed
             nodes: []
+        }
+    }
+
+    componentDidMount() {
+        const id = parseInt(this.props.match.params.id);
+        if (id) {
+            this.fetchData(id);
+        }
+    }
+
+    // async fetchData = (id) => {
+    async fetchData (id) {
+        let workflow = await getWorkflowByID(id);
+        if (workflow) {
+            this.setState({
+                id: workflow.id,
+                name: workflow.name,
+                completed: workflow.completed,
+                nodes: workflow.nodes
+            })
         }
     }
 
@@ -85,7 +106,7 @@ class CreateWorkflow extends Component {
 
     saveWorkflowClickHandler = () => {
         let workflow = {
-            id: Math.floor(Math.random() * 1000),
+            id: this.state.id || Math.floor(Math.random() * 1000),
             name: this.state.name,
             nodes: this.state.nodes,
             completed: this.state.completed

@@ -39,7 +39,7 @@ class App extends Component {
               <WorkflowsContainer />
             </PrivateRoute>
 
-            <PrivateRoute path="/edit" >
+            <PrivateRoute path="/edit/:id?" >
               <CreateWorkflow />
             </PrivateRoute>
 

@@ -1,7 +1,12 @@
 
 export const getWorkflows = async () => { 
-    console.log("getWorkflows called!");
     return Promise.resolve(workflows);
+}
+
+export const getWorkflowByID = async (id) => {
+    
+    let index = workflows.findIndex( w => w.id === id);
+    return Promise.resolve(workflows[index]);
 }
 
 export const updateWorkflow = (wflow) => {
@@ -12,8 +17,6 @@ export const updateWorkflow = (wflow) => {
     } else {
         workflows.push(wflow);
     }
-
-    console.log("updateWorkflows called!");
 }
 
 export const deleteWorkflow = (id) => {
@@ -26,9 +29,9 @@ export const deleteWorkflow = (id) => {
 
 let workflows = [
     {
-        id: '1',
+        id: 1,
         name: 'Workflow 1',
-        completed: true,
+        completed: false,
         nodes: [
             {id: '1-node1', title: 'Task 1', status: 'completed', content: 'This task is completed'},
             {id: '1-node2', title: 'Task 2', status: 'in-progress', content: 'This task is inprogress'},
@@ -36,16 +39,16 @@ let workflows = [
         ]
     },
     {
-        id: '2',
+        id: 2,
         name: 'Workflow 2',
-        completed: false,
+        completed: true,
         nodes: [
-            {id: '2-node1', title: 'Task 1', status:'pending', content: 'Tasks are pending'},
-            {id: '1-node2', title: 'Task 2', status: 'in-progress', content: 'This task is inprogress'}
+            {id: '2-node1', title: 'Task 1', status:'completed', content: 'Tasks are pending'},
+            {id: '1-node2', title: 'Task 2', status: 'completed', content: 'This task is inprogress'}
         ]
     },
     {
-        id: '3',
+        id: 3,
         name: 'Workflow 3',
         completed: false,
         nodes: [

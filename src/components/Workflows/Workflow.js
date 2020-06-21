@@ -18,7 +18,7 @@ class Workflow extends Component {
         }
 
         return (
-            <div className='wflow-container box-layout'>
+            <div className='wflow-container box-layout' onClick={this.props.clicked}>
                 <div className='md-icon right-corner delete'>
                     <DeleteForeverIcon 
                         onClick={this.props.deleteHandler} 

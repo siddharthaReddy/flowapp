@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import HeaderLayout from '../components/Layout/Header';
 import { SuccessButton } from '../components/Layout/CustomButtons';
 import Workflows from '../components/Workflows/Workflows';
-import { getWorkflows, deleteWorkflow } from "../services/Mockdata/WorkflowService";
+import { getWorkflows, deleteWorkflow, updateWorkflow } from "../services/Mockdata/WorkflowService";
 
 class WorkflowsContainer extends Component {
 
@@ -70,8 +70,20 @@ class WorkflowsContainer extends Component {
         })
     }
 
+    workflowUpdatedHandler = (wflow) => {
+        let list = [...this.workflowsList];
+        let index = list.findIndex(w => w.id === wflow.id);
+        
+        if (index !== -1){
+            // update and rerender
+            updateWorkflow(wflow);
+            this.componentDidMount();
+        }
+    }
+
     deleteWorkflowClickHandler = (event, id) => {
         event.preventDefault();
+        event.stopPropagation();
         
         //delete from database
         deleteWorkflow(id);
@@ -111,7 +123,10 @@ class WorkflowsContainer extends Component {
                     </div>
                 </HeaderLayout>
 
-                <Workflows workflows={this.state.workflows} deleteWorkflowHandler={this.deleteWorkflowClickHandler} />
+                <Workflows 
+                    workflows={this.state.workflows}
+                    workflowUpdatedHandler={this.workflowUpdatedHandler}
+                    deleteWorkflowHandler={this.deleteWorkflowClickHandler} />
             </div>
         )
     }

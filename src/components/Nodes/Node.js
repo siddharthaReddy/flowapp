@@ -13,7 +13,7 @@ class Node extends Component {
         // onChange handler on parent expects Event as first param
         let _event = {
             target: {   
-                value: index == 2 ? statuses[0] : statuses[index+1] // rotate status value from array
+                value: index === 2 ? statuses[0] : statuses[index+1] // rotate status value from array
             }
         }
 
