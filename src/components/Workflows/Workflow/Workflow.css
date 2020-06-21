@@ -19,6 +19,10 @@
     cursor: pointer;
 } 
 
+.wflow-container:hover .delete-icon {
+    display: inline-block;
+} 
+
 .wflow-container ul { 
     text-decoration: none;
     margin: 0;
@@ -30,3 +34,11 @@
     margin: 20px 0;
 
 }
+
+.wflow-container .delete-icon { 
+    position: absolute;
+    color: red;
+    transform: translate(180px, -35px);
+    display: none;
+}
+

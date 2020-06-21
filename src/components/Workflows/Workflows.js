@@ -11,7 +11,8 @@ class Workflows extends Component {
                     return <Workflow key={wflow.id}
                         name={wflow.name}
                         isCompleted={wflow.isCompleted}
-                        nodes={wflow.nodes}/> 
+                        nodes={wflow.nodes}
+                        deleteHandler={(event) => this.props.deleteWorkflowHandler(event, wflow.id) }/> 
                     })
                 )
         }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import './Workflow.css';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 class Workflow extends Component {
-    // Three variables: 
+    // Attributes: 
     // Name: string
     // Status - completed/pending
     // Nodes[]
@@ -26,13 +27,18 @@ class Workflow extends Component {
         return (
             <div className='wflow-container box-layout'>
                 <div>
-                    <div className='title'>
-                        <input readOnly value={this.props.name} />
+                    <div className='delete-icon'>
+                        <DeleteForeverIcon onClick={this.props.deleteHandler} fontSize="large"/>
                     </div>
-                    <div className='nodes-list'>
-                        <ul>
-                            {nodes}
-                        </ul>
+                    <div>
+                        <div className='title'>
+                            <input readOnly value={this.props.name} />
+                        </div>
+                        <div className='nodes-list'>
+                            <ul>
+                                {nodes}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

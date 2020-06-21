@@ -5,6 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from '@material-ui/icons/Clear';
 import ButtonLayout from '../../components/Layout/ButtonLayout';
 import Nodes from "../../components/Nodes/Nodes";
+import { updateWorkflow } from "../../services/workflows/WorkflowService";
 
 
 class CreateWorkflow extends Component {
@@ -70,8 +71,19 @@ class CreateWorkflow extends Component {
     }
 
     saveWorkflowClickHandler = () => {
-        alert("name: " + this.state.name);
-        // Update nodes to database and redirect to home page
+        let workflow = {
+            id: Math.floor(Math.random() * 1000),
+            name: this.state.name,
+            nodes: this.state.nodes,
+        }
+
+        // Update nodes to database
+        updateWorkflow(workflow);
+
+        //redirect to home page
+        if (this.props.history){
+            this.props.history.push("./");
+        }
     }
 
     render () {
