@@ -15,6 +15,11 @@
     font-family: inherit;
 }
 
+.sequential-arrow {
+    display: flex;
+    align-items: center;
+}
+
 .md-icon.success {
     color: #4caf50;
 }

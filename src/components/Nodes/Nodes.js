@@ -10,8 +10,7 @@ class Nodes extends Component {
      * prop: changed property of node
      * id: Node.id
      */
-    changeHandler = (event, prop, id) => {
-        const nodeIndex = this.props.nodes.findIndex((n) => n.id === id);
+    changeHandler = (event, nodeIndex, prop) => {
         const node = {
             ...this.props.nodes[nodeIndex]
         };
@@ -23,19 +22,48 @@ class Nodes extends Component {
         const nodes = [...this.props.nodes];
         nodes[nodeIndex] = node;
 
+        // Update workflow
         this.props.changed(nodes); 
+    }
+
+    /** 
+     * In a workflow there should be no Pending node before a Completed node
+     * First click Should turn to inprogress,
+     * Second click to completed and 
+     * Third back to pending
+     */
+    statusIconClickHandler = (nodeIndex, currNode) => {
+        const nodes = [...this.props.nodes];
+        const prevNode = nodes[nodeIndex-1];
+        
+        const statuses = ["pending", "in-progress", "completed"]; // Order is imp
+        const index = statuses.indexOf(currNode.status);
+        
+        // Rotate status value from array
+        const newStatus = index === 2 ? statuses[0] : statuses[index+1]
+
+        if (prevNode && prevNode.status !== "completed" && newStatus === "completed") {
+            console.log("Previous node is not completed yet!")
+            return;
+        }
+
+        // Update create-workflow component
+        nodes[nodeIndex].status = newStatus;
+        this.props.changed(nodes);
     }
 
     render() {
         return (
             <div className="workflows-container">
                 {
-                    this.props.nodes.map((n)=> {
+                    this.props.nodes.map((n, index)=> {
                         return <Node key={n.id}
+                                    isFirstNode = {index === 0}
                                     title={n.title}
                                     content={n.content}
                                     status={n.status}
-                                    changed={(event, prop) => this.changeHandler(event, prop, n.id)} />
+                                    clicked = {() => this.statusIconClickHandler(index, n)}
+                                    changed={(event, prop) => this.changeHandler(event, index, prop)} />
                     })
                 }
             </div>

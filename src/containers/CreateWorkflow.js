@@ -43,7 +43,7 @@ class CreateWorkflow extends Component {
         }
     }
 
-    validateWorkflowState= (nodes) => {
+    validateWorkflowState = (nodes) => {
         let isWorkflowCompleted = true;
 
         for (var i=0; i < nodes.length; i++){
@@ -54,6 +54,10 @@ class CreateWorkflow extends Component {
         }
 
         return isWorkflowCompleted;
+    }
+
+    generateRandomID () {
+        return Math.floor(Math.random() * 1000);
     }
 
     nameChangeHandler = (event) => {
@@ -90,7 +94,7 @@ class CreateWorkflow extends Component {
     addNodeClickHandler = () => {
         const nodes = [...this.state.nodes];
         nodes.push({
-            id: Math.floor(Math.random() * 1000), 
+            id: this.generateRandomID(), 
             title: '',
             content: '',
             status: 'pending'
@@ -111,7 +115,7 @@ class CreateWorkflow extends Component {
 
     saveWorkflowClickHandler = () => {
         let workflow = {
-            id: this.state.id || Math.floor(Math.random() * 1000),
+            id: this.state.id || this.generateRandomID(),
             name: this.state.name,
             nodes: this.state.nodes,
             completed: this.state.completed
