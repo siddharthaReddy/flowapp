@@ -29,14 +29,10 @@ class Workflows extends Component {
                 return node.status !== "completed"
             });
 
-            if (isAnyNodePending !== -1) {
+            if (isAnyNodePending !== -1 || !wflow.completed) {
                 this.showPendingAlertDialog(wflow);
             } else {
                 wflow.completed = false;
-                wflow.nodes = wflow.nodes.map(node => {
-                    node.status = "pending";
-                    return node;
-                })
                 this.props.workflowUpdatedHandler(wflow);
             }
         }
@@ -62,6 +58,7 @@ class Workflows extends Component {
         if (this.props.workflows) {
             workflows = (this.props.workflows.map((wflow) => {
                     return <Workflow key={wflow.id}
+                        id={wflow.id}
                         name={wflow.name}
                         completed={wflow.completed}
                         nodes={wflow.nodes}
@@ -80,16 +77,14 @@ class Workflows extends Component {
                     <DialogTitle id="alert-dialog-title">{"Alert"}</DialogTitle>
                     <DialogContent dividers>
                         <DialogContentText>
-                                Workflow is not complete. Would you like to edit:&nbsp;
-                                    <strong> {this.state.activePendingWorkflow.name}</strong>
+                                Workflow (<strong> {this.state.activePendingWorkflow.name} </strong>) 
+                                    cannot be marked completed as there might be nodes which are still 
+                                    <strong> "in-progress"</strong> or <strong>"pending".</strong>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.closePendingAlertDialog} color="primary">
                             Close
-                        </Button>
-                        <Button color="primary" autoFocus>
-                            <Link to={`/edit/${this.state.activePendingWorkflow.id}`}>Edit</Link>
                         </Button>
                     </DialogActions>
                 </Dialog>

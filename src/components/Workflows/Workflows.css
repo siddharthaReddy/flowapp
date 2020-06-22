@@ -42,11 +42,15 @@
     transform: translate(180px, -35px);
 }
 
-.wflow-container .md-icon.delete { 
-    color:#f44336;
+.wflow-container .md-icon.left-corner {
+    position: absolute;
+    transform: translate(-35px,-35px);
+}
+
+.wflow-container .md-icon.hide {
     display: none;
 }
 
-.wflow-container:hover .md-icon.delete {
+.wflow-container:hover .md-icon.hide {
     display: inline-block;
 }

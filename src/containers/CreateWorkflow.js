@@ -37,10 +37,23 @@ class CreateWorkflow extends Component {
             this.setState({
                 id: workflow.id,
                 name: workflow.name,
-                completed: workflow.completed,
+                completed: this.validateWorkflowState(workflow.nodes),
                 nodes: workflow.nodes
             })
         }
+    }
+
+    validateWorkflowState= (nodes) => {
+        let isWorkflowCompleted = true;
+
+        for (var i=0; i < nodes.length; i++){
+            if (nodes[i].status !== "completed") {
+                isWorkflowCompleted = false;
+                break;
+            }
+        }
+
+        return isWorkflowCompleted;
     }
 
     nameChangeHandler = (event) => {
@@ -90,16 +103,8 @@ class CreateWorkflow extends Component {
     }
 
     updateNodesHandler(nodes) {
-        let isWorkflowCompleted = true;
-
-        for (var i=0; i < nodes.length; i++){
-            if (nodes[i].status !== "completed") {
-                isWorkflowCompleted = false;
-                break;
-            }
-        }
         this.setState({
-            completed: isWorkflowCompleted,
+            completed: this.validateWorkflowState(nodes),
             nodes: nodes
         });
     }
